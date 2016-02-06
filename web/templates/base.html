@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/foundation.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
 
-  {% block scripts %}{% endblock %}
+  {% block headscripts %}{% endblock %}
 </head>
 <body>
   <div class="row">
@@ -17,10 +17,11 @@
 		</div>
   </div>
 
-  <script src="{{ url_for('static', filename='js/vendor/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
   <script src="{{ url_for('static', filename='js/foundation.js') }}"></script>
   <script>
     $(document).foundation();
   </script>
+  {% block bodyscripts %}{% endblock %}
 </body>
 </html>	
