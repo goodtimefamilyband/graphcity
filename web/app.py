@@ -13,10 +13,15 @@ import requests
 
 app = Flask(__name__)
 
-@app.route("/")
-def search():
-	return render_template("search.html")
+citylist = ["New York", "Chicago", "Philadelphia", "Paris", "Beijing", "Tokyo"]
 
+@app.route("/")
+def land():
+	return render_template("land.html")
+
+@app.route("/search", methods=["POST", "GET"])
+def search():
+	
 
 '''
 @app.after_request
