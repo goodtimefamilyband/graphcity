@@ -1,8 +1,66 @@
 {% extends "base.html" %}
 {% block title %} graphcity {% endblock %}
-{% block scripts %}
+{% block headscripts %}
 <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
 {% endblock %}
 {% block body %}
+<h5>graphcity</h5>
+<div id="graph"></div>
 
+{% block bodyscripts %}
+	<script type="text/javascript" charset="utf-8">
+		
+		var graph = {
+			"nodes": [
+				{"name": "New York", "group": 0},
+				{"name": "Philadelphia", "group": 1},
+				{"name": "Chicago", "group": 1},
+				{"name": "Beijing", "group": 1},
+				{"name": "Tokyo", "group": 1},
+				{"name": "Paris", "group": 1},
+			],
+			"links": [
+				{"source": 1, "target": 0, "value": 1},
+				{"source": 2, "target": 0, "value": 1},
+				{"source": 3, "target": 0, "value": 1},
+				{"source": 4, "target": 0, "value": 1},
+				{"source": 5, "target": 0, "value": 1},
+			]
+		}
+		
+		var citycount = {{ citycount }};
+		var w = 800, h = 600;
+		var force = d3.layout.force()
+			.charge(-120)
+			.linkDistance(30)
+			.size([w,h]);
+			
+		
+		var angle = (2 * Math.PI) / citycount;
+		var citydist = 100;
+		var startAngle = Math.PI / 2;
+		
+		var vis = d3.select("#graph")
+			.append("svg");
+		
+		
+		vis.attr("width", w)
+			.attr("height", h);
+		
+		vis.text("The Graph")
+			.select("#graph");
+		
+		for(var i = 0; i < citycount; i++) {
+			var thisAngle = (i + 1) * angle;
+			
+			var x = citydist * Math.cos(thisAngle);
+			var y = citydist * Math.sin(thisAngle);
+			
+			vis.append("circle")
+				.attr("cx", w/2 + x)
+				.attr("cy", h/2 + y)
+				.attr("r", 50);
+		}
+	</script>
+{% endblock %}
 {% endblock %}
