@@ -14,7 +14,16 @@ import requests
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
-citylist = ["New York", "Chicago", "Philadelphia", "Paris", "Beijing", "Tokyo"]
+app.config['MONGODB_SETTINGS'] = { 'db' : 'graphcity' }
+db = MongoEngine(app)
+
+class CityNode(db.Document):
+	name = db.StringField(required=True, unique=True)
+
+class CityLink(db.Document):
+	source = db.ReferenceField(CityLink)
+	target = db.ReferenceField(CityLink)
+	weight = db.FloatField(required=True)
 
 @app.route("/")
 def land():
@@ -23,6 +32,9 @@ def land():
 @app.route("/search", methods=["POST", "GET"])
 def search():
 	citycount = 5
+	if request.method == "POST":
+		countries = CountryLink.
+	
 	return render_template("search.html", citycount=citycount, msg="foo");
 
 '''
