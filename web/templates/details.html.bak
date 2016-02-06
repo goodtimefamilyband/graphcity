@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %} graphcity {% endblock %}
+{% block headscripts %}
+<script src="//d3js.org/d3.v3.js" charset="utf-8"></script>
+
+<style>
+
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
+
+</style>
+{% endblock %}
+{% block body %}
+<h5>graphcity</h5>
+	<table>
+		<th>City</th><th>Country</th><th>Population</th><th>Area</th><th>Density</th>
+		<tr><td>{{source.city.name}}</td><td>{{source.country}}</td><td>{{source.population}}</td><td>{{source.area}}</td><td>{{source.density}}</td></tr>
+		<tr><td>{{target.city.name}}</td><td>{{target.country}}</td><td>{{target.population}}</td><td>{{target.area}}</td><td>{{target.density}}</td></tr>
+	</table>
+{% endblock %}
