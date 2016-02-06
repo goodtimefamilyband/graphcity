@@ -6,7 +6,7 @@ body, html {
 }
 
 body {
-    background: black url(https://upload.wikimedia.org/wikipedia/commons/b/b6/Lower_Manhattan_from_Jersey_City_November_2014_panorama_3.jpg) no-repeat fixed center center;
+    background: black url(/static/img/city.jpg) no-repeat fixed center center;
 }
 
 .panel {
