@@ -12,6 +12,7 @@ from flask.ext.login import LoginManager, login_user, logout_user, login_require
 import requests
 
 app = Flask(__name__)
+app.config["DEBUG"] = True
 
 citylist = ["New York", "Chicago", "Philadelphia", "Paris", "Beijing", "Tokyo"]
 
@@ -21,7 +22,8 @@ def land():
 
 @app.route("/search", methods=["POST", "GET"])
 def search():
-	return render_template("search.html");
+	citycount = 5
+	return render_template("search.html", citycount=citycount, msg="foo");
 
 '''
 @app.after_request
