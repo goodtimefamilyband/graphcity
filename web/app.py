@@ -21,7 +21,7 @@ def land():
 
 @app.route("/search", methods=["POST", "GET"])
 def search():
-	
+	return render_template("search.html");
 
 '''
 @app.after_request
