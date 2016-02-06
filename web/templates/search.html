@@ -10,23 +10,7 @@
 {% block bodyscripts %}
 	<script type="text/javascript" charset="utf-8">
 		
-		var graph = {
-			"nodes": [
-				{"name": "New York", "group": 0},
-				{"name": "Philadelphia", "group": 1},
-				{"name": "Chicago", "group": 1},
-				{"name": "Beijing", "group": 1},
-				{"name": "Tokyo", "group": 1},
-				{"name": "Paris", "group": 1},
-			],
-			"links": [
-				{"source": 1, "target": 0, "value": 1},
-				{"source": 2, "target": 0, "value": 1},
-				{"source": 3, "target": 0, "value": 1},
-				{"source": 4, "target": 0, "value": 1},
-				{"source": 5, "target": 0, "value": 1},
-			]
-		}
+		
 		
 		var citycount = {{ citycount }};
 		var w = 800, h = 600;
@@ -34,18 +18,28 @@
 			.charge(-120)
 			.linkDistance(30)
 			.size([w,h]);
-			
-		
-		var angle = (2 * Math.PI) / citycount;
-		var citydist = 100;
-		var startAngle = Math.PI / 2;
 		
 		var vis = d3.select("#graph")
 			.append("svg");
 		
-		
 		vis.attr("width", w)
 			.attr("height", h);
+			
+		/* This will be an endpoint */
+		d3.json("static/fake.json", function(error, graph) {
+			if(error) throw error;
+			
+			force
+				.nodes(graph.nodes)
+				.links(graph.links)
+				.start();
+		});
+		
+		/*
+		var angle = (2 * Math.PI) / citycount;
+		var citydist = 100;
+		var startAngle = Math.PI / 2;
+		
 		
 		vis.text("The Graph")
 			.select("#graph");
@@ -61,6 +55,7 @@
 				.attr("cy", h/2 + y)
 				.attr("r", 50);
 		}
+		*/
 	</script>
 {% endblock %}
 {% endblock %}
