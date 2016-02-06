@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %} Search {% endblock %}
+{% block body %}
+	<h1>graphcity</h1>
+	<form action="/search" method="POST">
+		<label for="selCity1">Choose a city</label>
+		<label for="selCity2">Choose another city</label>
+		<select id="selCity1" name="city1"></select>
+		<select name="selCity2"></select>
+		<!--<input type="text" placeholder="Search for a book" name="user_search" required />-->
+		<!--<input type="text" placeholder="Enter another city-->
+		
+		<div class="small-2 columns">
+			<button class="postfix search-button" type="submit">Go</button>
+		</div>
+	</form>
+	{% block results %}{% endblock %}
+{% endblock %}
+	
